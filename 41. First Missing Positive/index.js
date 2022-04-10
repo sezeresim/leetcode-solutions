@@ -5,22 +5,24 @@
 var firstMissingPositive = function (nums) {
   let obj = {};
   let maxNumber = 0;
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] > maxNumber) {
-      maxNumber = nums[i];
+  let i = 0;
+  while (i < nums.length) {
+    let tmp = nums[i];
+    if (tmp + 1 > maxNumber) {
+      maxNumber = tmp + 1;
     }
-    if (nums[i] > 0) {
-      obj[nums[i]] = 1;
+    if (tmp > 0) {
+      obj[tmp] = 1;
     }
+    i++;
   }
 
-  let result = 1;
-  for (let i = maxNumber; i > 0; i--) {
-    if (result > i) {
-      result == i;
+  let j = 1;
+  while (j <= maxNumber) {
+    if (!obj[j]) {
+      return j;
     }
+    j++;
   }
-  return result;
+  return 1;
 };
-
-firstMissingPositive([7, 8, 9, 11, 12]);
